@@ -18,7 +18,7 @@ namespace MagickSharp
 		/// <summary>
 		/// The name of the DLL to load the MagicWand API from.
 		/// </summary>
-		public const string DLL_CORE = "CORE_RL_wand_.dll";
+		public const string DLL_WAND = "MagickWand.dll";
 
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -53,7 +53,7 @@ namespace MagickSharp
 			}
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
+		/*[StructLayout(LayoutKind.Sequential)]
 		public struct Image
 		{
 			private IntPtr img;
@@ -62,7 +62,7 @@ namespace MagickSharp
 			{
 				this.img = i;
 			}
-		}
+		}*/
 
 		public enum ExceptionType
 		{

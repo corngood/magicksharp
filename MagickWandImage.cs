@@ -23,7 +23,7 @@ namespace MagickSharp
 		/// <param name="rows">The image height</param>
 		/// <param name="background">The image color</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickNewImage(MagickWand wand, size_t columns, size_t rows, PixelWand background);
 
 		/// <summary>
@@ -36,11 +36,17 @@ namespace MagickSharp
 		/// <param name="wand">the magick wand.</param>
 		/// <param name="filename">the image filename.</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickReadImage(MagickWand wand, [MarshalAs(UnmanagedType.LPStr)] string filename);
 
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickReadImageBlob(MagickWand wand, IntPtr blob, size_t length);
+
+		[DllImport(DLL_WAND)]
+		public static extern MagickBooleanType MagickPingImage(MagickWand wand, string filename);
+		
+		[DllImport(DLL_WAND)]
+		public static extern MagickBooleanType MagickPingImageBlob(MagickWand wand, IntPtr blob, size_t length);
 
 		/// <summary>
 		/// MagickWriteImage() writes an image to the specified filename. 
@@ -50,7 +56,7 @@ namespace MagickSharp
 		/// <param name="wand">the magick wand.</param>
 		/// <param name="filename">the image filename.</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickWriteImage(MagickWand wand, [MarshalAs(UnmanagedType.LPStr)] string filename);
 
 		/// <summary>
@@ -61,7 +67,7 @@ namespace MagickSharp
 		/// <param name="background">the background pixel wand.</param>
 		/// <param name="degrees">the number of degrees to rotate the image.</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickRotateImage(MagickWand wand, PixelWand background, double degrees);
 
 		/// <summary>
@@ -116,7 +122,7 @@ namespace MagickSharp
 		/// <param name="wand"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		private static extern IntPtr MagickGetImageBlob(MagickWand wand, out size_t length);
 
 		/// <summary>
@@ -134,7 +140,7 @@ namespace MagickSharp
 		/// <param name="storage">Define the data type of the pixels. Float and double types are expected to be normalized [0..1] otherwise [0..QuantumRange]. Choose from these types: CharPixel, ShortPixel, IntegerPixel, LongPixel, FloatPixel, or DoublePixel.</param>
 		/// <param name="pixels">This array of values contain the pixel components as defined by map and type. You must preallocate this array where the expected length varies depending on the values of width, height, map, and type.</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickImportImagePixels(MagickWand wand,
 			ssize_t x, ssize_t y,size_t columns, size_t rows, 
 			[MarshalAs(UnmanagedType.LPStr)] string map, 
@@ -155,7 +161,7 @@ namespace MagickSharp
 		/// <param name="storage">Define the data type of the pixels. Float and double types are expected to be normalized [0..1] otherwise [0..QuantumRange]. Choose from these types: CharPixel, DoublePixel, FloatPixel, IntegerPixel, LongPixel, QuantumPixel, or ShortPixel.</param>
 		/// <param name="pixels">This array of values contain the pixel components as defined by map and type. You must preallocate this array where the expected length varies depending on the values of width, height, map, and type.</param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickExportImagePixels(MagickWand wand,
 			ssize_t x, ssize_t y, size_t columns, size_t rows,
 			[MarshalAs(UnmanagedType.LPStr)] string map,
@@ -166,7 +172,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		public static extern string MagickGetImageFormat(MagickWand wand);
 
@@ -176,7 +182,7 @@ namespace MagickSharp
 		/// <param name="wand"></param>
 		/// <param name="format"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType MagickSetImageFormat(MagickWand wand,
 			[MarshalAs(UnmanagedType.LPStr)] string format);
 
@@ -185,7 +191,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern size_t MagickGetImageHeight(MagickWand wand);
 
 		/// <summary>
@@ -193,7 +199,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern size_t MagickGetImageWidth(MagickWand wand);
 
 	}

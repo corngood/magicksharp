@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 using size_t = System.UInt64;
@@ -16,13 +16,13 @@ namespace MagickSharp
 		/// <summary>
 		/// MagickWandGenesis() initializes the MagickWand environment.
 		/// </summary>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void MagickWandGenesis();
 
 		/// <summary>
 		/// MagickWandTerminus() terminates the MagickWand environment.
 		/// </summary>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void MagickWandTerminus();
 
 		/// <summary>
@@ -31,8 +31,8 @@ namespace MagickSharp
 		/// <returns></returns>
 		public static MagickWand NewMagickWand() { return new MagickWand(NewMagickWandImpl()); }
 
-		[DllImport(DLL_CORE, EntryPoint = "NewMagickWand")]
-		private static extern IntPtr NewMagickWandImpl();
+		[DllImport(DLL_WAND, EntryPoint = "NewMagickWand")]
+		internal static extern IntPtr NewMagickWandImpl();
 
 		/// <summary>
 		/// DestroyMagickWand() deallocates memory associated with a MagickWand.
@@ -41,7 +41,7 @@ namespace MagickSharp
 		/// <returns></returns>
 		public static MagickWand DestroyMagickWand(MagickWand wand) { wand.Dispose(); return wand; }
 
-		[DllImport(DLL_CORE, EntryPoint = "DestroyMagickWand")]
+		[DllImport(DLL_WAND, EntryPoint = "DestroyMagickWand")]
 		private static extern IntPtr DestroyMagickWandImpl(IntPtr wand);
 
 
@@ -49,7 +49,7 @@ namespace MagickSharp
 		/// ClearMagickWand() clears resources associated with the wand.
 		/// </summary>
 		/// <param name="wand"></param>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void ClearMagickWand(MagickWand wand);
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickWand CloneMagickWand(MagickWand wand);
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern MagickBooleanType IsMagickWand(MagickWand wand);
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace MagickSharp
 		/// <param name="wand"></param>
 		/// <param name="severity"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern string MagickGetException(MagickWand wand, out ExceptionType severity);
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern ExceptionType MagickGetExceptionType(MagickWand wand);
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern size_t MagickGetIteratorIndex(MagickWand wand);
 
 		/// <summary>
@@ -98,7 +98,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="option"></param>
 		/// <returns></returns>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern string MagickQueryConfigureOption(string option);
 
 	}

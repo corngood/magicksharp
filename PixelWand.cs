@@ -20,7 +20,7 @@ namespace MagickSharp
 		/// <returns></returns>
 		public static PixelWand NewPixelWand() { return new PixelWand(NewPixelWandImpl()); }
 
-		[DllImport(DLL_CORE, EntryPoint = "NewPixelWand")]
+		[DllImport(DLL_WAND, EntryPoint = "NewPixelWand")]
 		private static extern IntPtr NewPixelWandImpl();
 
 		/// <summary>
@@ -30,7 +30,7 @@ namespace MagickSharp
 		/// <returns></returns>
 		public static PixelWand DestroyPixelWand(PixelWand wand) { wand.Dispose(); return wand; }
 
-		[DllImport(DLL_CORE, EntryPoint = "DestroyPixelWand")]
+		[DllImport(DLL_WAND, EntryPoint = "DestroyPixelWand")]
 		private static extern IntPtr DestroyPixelWandImpl(IntPtr wand);
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <param name="c"></param>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void PixelSetRed(PixelWand wand, double c);
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <param name="c"></param>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void PixelSetGreen(PixelWand wand, double c);
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <param name="c"></param>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void PixelSetBlue(PixelWand wand, double c);
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace MagickSharp
 		/// </summary>
 		/// <param name="wand"></param>
 		/// <param name="opacity"></param>
-		[DllImport(DLL_CORE)]
+		[DllImport(DLL_WAND)]
 		public static extern void PixelSetOpacity(PixelWand wand, double opacity);
 	}
 }
